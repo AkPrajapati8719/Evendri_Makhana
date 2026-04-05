@@ -14,13 +14,13 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#1e293b',
-                        secondary: '#f59e0b',
-                        accent: '#10b981',
-                        light: '#f8fafc',
+                        primary: '#0a0a0a',   // Rich Matte Black
+                        secondary: '#d4af37', // Luxurious Metallic Gold
+                        accent: '#262626',    // Sleek Gunmetal/Charcoal
+                        light: '#e5e5e5',     // Soft Off-White for crisp text
                     },
                     boxShadow: {
-                        'soft': '0 20px 40px -15px rgba(0,0,0,0.05)',
+                        'soft': '0 20px 40px -15px rgba(0,0,0,0.7)',
                     }
                 }
             }
@@ -33,124 +33,182 @@
             width: 100%;
             position: relative;
             scroll-behavior: smooth;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
         }
 
         .perspective-1000 {
             perspective: 1000px;
         }
+
+        /* Running Gradient Animation */
+        @keyframes bg-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .animate-bg-flow {
+            background-size: 200% 200%;
+            animation: bg-flow 4s ease infinite;
+        }
+
+        /* Sweeping Shine for Buttons */
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-primary text-light font-sans selection:bg-secondary selection:text-primary">
 
-    <!-- nav bar -->
-    <nav id="navbar" class="bg-white shadow-md fixed w-full z-30 top-0 border-b border-gray-100">
+    <nav id="navbar" class="bg-primary/90 backdrop-blur-md shadow-sm fixed w-full z-30 top-0 border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="index.html" class="text-2xl font-black text-primary tracking-wide uppercase">Evendri<span
-                            class="text-secondary">Makhana</span></a>
+                    <a href="index.html" class="text-2xl font-black text-white tracking-wide uppercase">Evendri<span
+                            class="text-secondary drop-shadow-[0_0_5px_rgba(212,175,55,0.5)]">Makhana</span></a>
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="index.html#home" class="text-gray-600 hover:text-secondary font-medium transition">Home</a>
+                    <a href="index.html#home" class="text-gray-400 hover:text-secondary font-medium transition">Home</a>
                     <a href="index.html#about"
-                        class="text-gray-600 hover:text-secondary font-medium transition">About</a>
+                        class="text-gray-400 hover:text-secondary font-medium transition">About</a>
                     <a href="index.html#products"
-                        class="text-gray-600 hover:text-secondary font-medium transition font-bold text-primary">Products</a>
+                        class="text-secondary font-bold transition drop-shadow-[0_0_8px_rgba(212,175,55,0.3)]">Products</a>
                     <a href="index.html#contact"
-                        class="text-gray-600 hover:text-secondary font-medium transition">Contact</a>
+                        class="text-gray-400 hover:text-secondary font-medium transition">Contact</a>
 
                     <a href="index.html?openCart=true" id="cart-btn"
-                        class="text-gray-600 hover:text-secondary relative">
+                        class="text-gray-400 hover:text-secondary relative transition duration-300">
                         <i class="fas fa-shopping-bag text-xl"></i>
                         <span
-                            class="absolute -top-2 -right-2 bg-accent text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                            class="absolute -top-2 -right-2 bg-secondary text-primary text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-[0_0_10px_rgba(212,175,55,0.5)]">0</span>
                     </a>
                 </div>
             </div>
         </div>
     </nav>
-    <!-- product details  -->
-    <section class="pt-32 pb-12 min-h-[70vh]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <section
+        class="pt-32 pb-12 min-h-[70vh] relative overflow-hidden bg-gradient-to-br from-[#050505] via-[#1c1c1c] to-[#050505] animate-bg-flow bg-[length:200%_200%]">
+        <div
+            class="absolute top-10 left-10 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[120px] animate-pulse pointer-events-none z-0">
+        </div>
+        <div class="absolute bottom-10 right-10 w-[500px] h-[500px] bg-gray-600/10 rounded-full blur-[120px] animate-pulse pointer-events-none z-0"
+            style="animation-delay: 2s;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div
-                class="grid md:grid-cols-2 gap-12 items-center bg-white p-8 rounded-[2.5rem] shadow-soft border border-gray-100">
-                <div class="relative group" data-aos="zoom-in">
-                    <div class="absolute inset-0 bg-secondary/5 rounded-full blur-3xl transform scale-75"></div>
+                class="grid md:grid-cols-2 gap-12 items-center bg-accent p-8 rounded-[2.5rem] shadow-2xl border border-gray-800">
+                <div class="relative group flex justify-center items-center" data-aos="zoom-in">
+                    <div
+                        class="absolute inset-0 bg-secondary/20 rounded-full blur-3xl transform scale-75 group-hover:scale-90 group-hover:bg-secondary/30 transition-all duration-700 -z-10">
+                    </div>
                     <img id="main-product-img" src="" alt="Product"
-                        class="relative z-10 w-full max-w-md mx-auto rounded-3xl shadow-2xl transition duration-500">
+                        class="relative z-10 w-full max-w-md mx-auto rounded-[3rem] shadow-2xl border border-gray-700 group-hover:scale-105 group-hover:border-secondary/50 group-hover:shadow-[0_0_40px_rgba(212,175,55,0.3)] transition-all duration-700 object-cover">
                 </div>
 
                 <div data-aos="fade-left">
-                    <nav class="flex mb-4 text-gray-400 text-sm font-medium">
-                        <a href="index.html" class="hover:text-secondary">Home</a>
+                    <nav class="flex mb-4 text-gray-500 text-sm font-medium">
+                        <a href="index.html" class="hover:text-secondary transition-colors">Home</a>
                         <span class="mx-2">/</span>
-                        <span id="breadcrumb-title" class="text-primary font-bold">Details</span>
+                        <span id="breadcrumb-title" class="text-secondary font-bold">Details</span>
                     </nav>
 
-                    <h1 id="product-title" class="text-4xl md:text-5xl font-black text-primary mb-2">Flavor Name</h1>
+                    <h1 id="product-title" class="text-4xl md:text-5xl font-black text-white mb-2 drop-shadow-md">Flavor
+                        Name</h1>
                     <div class="flex items-center gap-4 mb-6">
-                        <span id="product-price" class="text-3xl font-black text-secondary">₹000</span>
-                        <span class="text-lg text-gray-400 line-through">₹299</span>
+                        <span id="product-price"
+                            class="text-3xl font-black text-secondary drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">₹000</span>
+                        <span class="text-lg text-gray-600 line-through">₹299</span>
                     </div>
 
-                    <p id="product-desc" class="text-gray-600 text-lg leading-relaxed mb-8">Loading description...</p>
+                    <p id="product-desc" class="text-gray-400 text-lg leading-relaxed mb-8">Loading description...</p>
 
                     <div class="flex flex-col sm:flex-row gap-4">
                         <button id="add-to-bag-btn"
-                            class="flex-1 bg-primary text-white font-bold py-4 rounded-2xl hover:bg-slate-800 transition text-center shadow-xl flex justify-center items-center gap-2">
+                            class="flex-1 bg-primary border border-gray-700 text-white font-bold py-4 rounded-2xl hover:bg-gray-800 hover:border-secondary/50 hover:text-secondary hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 text-center shadow-xl flex justify-center items-center gap-2">
                             Add to Bag <i class="fas fa-shopping-cart"></i>
                         </button>
 
-                        <a href="index.html?buyNow=true"
-                            class="flex-1 bg-secondary text-white font-bold py-4 rounded-2xl hover:bg-orange-600 transition text-center shadow-xl">
-                            Buy Now
+                        <a href="index.html?buyNow=true" id="buy-now-link"
+                            class="relative overflow-hidden flex-1 bg-secondary text-primary font-black py-4 rounded-2xl shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.6)] hover:bg-yellow-500 transition-all duration-300 flex justify-center items-center group/btn">
+                            <span class="relative z-10">Buy Now</span>
+                            <div
+                                class="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_1s_infinite] skew-x-12">
+                            </div>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- product section   -->
-    <section class="py-16 bg-light">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-12">
-                <h2 class="text-3xl font-black text-primary">Explore All <span class="text-secondary">Flavors</span>
+
+    <section class="py-16 bg-[#050505] relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="mb-12" data-aos="fade-up">
+                <h2 class="text-3xl font-black text-white">Explore All <span
+                        class="text-secondary drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">Flavors</span>
                 </h2>
-                <div class="w-20 h-1.5 bg-secondary mt-3 rounded-full"></div>
+                <div class="w-20 h-1.5 bg-secondary mt-3 rounded-full shadow-[0_0_10px_rgba(212,175,55,0.6)]"></div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div
-                    class="bg-white p-6 rounded-3xl shadow-soft hover:shadow-2xl transition group border border-gray-100">
+                <div class="bg-accent p-6 rounded-[2rem] shadow-soft hover:shadow-[0_0_40px_rgba(212,175,55,0.2)] transition-all duration-500 group border border-gray-800 hover:border-secondary/40 transform hover:-translate-y-2 relative overflow-hidden"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">
+                    </div>
                     <img src="images/makhana 1.jpeg"
-                        class="w-40 h-40 object-cover mx-auto rounded-full mb-6 group-hover:scale-110 transition">
-                    <h3 class="text-xl font-black text-primary mb-1">Classic Pink Salt</h3>
-                    <p class="text-secondary font-bold mb-4">₹249</p>
+                        class="relative z-10 w-40 h-40 object-cover mx-auto rounded-full mb-6 group-hover:scale-110 group-hover:rotate-6 shadow-xl border border-gray-700 group-hover:border-secondary/50 transition-all duration-500">
+                    <h3
+                        class="relative z-10 text-xl font-black text-white mb-1 group-hover:text-secondary transition-colors">
+                        Classic Pink Salt</h3>
+                    <p class="relative z-10 text-secondary font-bold mb-4 drop-shadow-md">₹249</p>
                     <a href="product.html?id=1"
-                        class="block text-center py-3 bg-gray-100 hover:bg-primary hover:text-white font-bold rounded-xl transition">View
+                        class="relative z-10 block text-center py-3 bg-primary border border-gray-700 text-gray-300 hover:bg-secondary hover:text-primary hover:border-secondary font-bold rounded-xl transition-all duration-300">View
                         Details</a>
                 </div>
 
-                <div
-                    class="bg-white p-6 rounded-3xl shadow-soft hover:shadow-2xl transition group border border-gray-100">
+                <div class="bg-accent p-6 rounded-[2rem] shadow-soft hover:shadow-[0_0_40px_rgba(239,68,68,0.2)] transition-all duration-500 group border border-gray-800 hover:border-red-500/40 transform hover:-translate-y-2 relative overflow-hidden"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-red-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">
+                    </div>
                     <img src="images/makhana 2.jpeg"
-                        class="w-40 h-40 object-cover mx-auto rounded-full mb-6 group-hover:scale-110 transition">
-                    <h3 class="text-xl font-black text-primary mb-1">Peri Peri Fiesta</h3>
-                    <p class="text-secondary font-bold mb-4">₹279</p>
+                        class="relative z-10 w-40 h-40 object-cover mx-auto rounded-full mb-6 group-hover:scale-110 group-hover:rotate-6 shadow-xl border border-gray-700 group-hover:border-red-500/50 transition-all duration-500">
+                    <h3
+                        class="relative z-10 text-xl font-black text-white mb-1 group-hover:text-red-400 transition-colors">
+                        Peri Peri Fiesta</h3>
+                    <p class="relative z-10 text-secondary font-bold mb-4 drop-shadow-md">₹279</p>
                     <a href="product.html?id=2"
-                        class="block text-center py-3 bg-gray-100 hover:bg-primary hover:text-white font-bold rounded-xl transition">View
+                        class="relative z-10 block text-center py-3 bg-primary border border-gray-700 text-gray-300 hover:bg-secondary hover:text-primary hover:border-secondary font-bold rounded-xl transition-all duration-300">View
                         Details</a>
                 </div>
 
-                <div
-                    class="bg-white p-6 rounded-3xl shadow-soft hover:shadow-2xl transition group border border-gray-100">
+                <div class="bg-accent p-6 rounded-[2rem] shadow-soft hover:shadow-[0_0_40px_rgba(234,179,8,0.2)] transition-all duration-500 group border border-gray-800 hover:border-yellow-500/40 transform hover:-translate-y-2 relative overflow-hidden"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">
+                    </div>
                     <img src="images/makhana 3.jpeg"
-                        class="w-40 h-40 object-cover mx-auto rounded-full mb-6 group-hover:scale-110 transition">
-                    <h3 class="text-xl font-black text-primary mb-1">Cheese & Jalapeno</h3>
-                    <p class="text-secondary font-bold mb-4">₹299</p>
+                        class="relative z-10 w-40 h-40 object-cover mx-auto rounded-full mb-6 group-hover:scale-110 group-hover:rotate-6 shadow-xl border border-gray-700 group-hover:border-yellow-500/50 transition-all duration-500">
+                    <h3
+                        class="relative z-10 text-xl font-black text-white mb-1 group-hover:text-yellow-400 transition-colors">
+                        Cheese & Jalapeno</h3>
+                    <p class="relative z-10 text-secondary font-bold mb-4 drop-shadow-md">₹299</p>
                     <a href="product.html?id=3"
-                        class="block text-center py-3 bg-gray-100 hover:bg-primary hover:text-white font-bold rounded-xl transition">View
+                        class="relative z-10 block text-center py-3 bg-primary border border-gray-700 text-gray-300 hover:bg-secondary hover:text-primary hover:border-secondary font-bold rounded-xl transition-all duration-300">View
                         Details</a>
                 </div>
             </div>
@@ -158,39 +216,51 @@
     </section>
 
     <footer
-        class="bg-slate-900 text-gray-300 pt-20 pb-10 border-t-4 border-secondary relative overflow-hidden text-left">
+        class="bg-[#050505] text-gray-400 pt-20 pb-10 border-t-4 border-secondary relative overflow-hidden text-left">
+        <div
+            class="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full transform translate-x-1/2 translate-y-1/2 pointer-events-none z-0">
+        </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid md:grid-cols-4 gap-12 mb-16">
                 <div class="col-span-1 md:col-span-2">
                     <a href="index.html"
                         class="text-3xl font-black text-white tracking-wide uppercase mb-6 block">Evendri<span
-                            class="text-secondary">Makhana</span></a>
-                    <p class="text-gray-400 max-w-sm mb-8 leading-relaxed text-lg">Providing premium, purely roasted,
+                            class="text-secondary drop-shadow-[0_0_5px_rgba(212,175,55,0.5)]">Makhana</span></a>
+                    <p class="text-gray-500 max-w-sm mb-8 leading-relaxed text-lg">Providing premium, purely roasted,
                         and deliciously flavored Fox Nuts right to your doorstep.</p>
                     <div class="space-y-4 text-sm">
                         <p class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-secondary mt-1"></i>
-                            Bansal One, Near Rani Kamlapati Station, Bhopal, Madhya Pradesh</p>
-                        <p class="flex items-center gap-3"><i class="fas fa-phone text-secondary"></i> +91 9993291765
+                            <span class="text-gray-400">Bansal One, Near Rani Kamlapati Station, Bhopal, Madhya
+                                Pradesh</span>
+                        </p>
+                        <p class="flex items-center gap-3"><i class="fas fa-phone text-secondary"></i>
+                            <a href="tel:+919993291765" class="hover:text-secondary text-gray-400 transition">+91
+                                9993291765</a>
                         </p>
                         <p class="flex items-center gap-3"><i class="fas fa-envelope text-secondary"></i>
-                            evendriteam@gmail.com</p>
+                            <a href="mailto:evendriteam@gmail.com"
+                                class="hover:text-secondary text-gray-400 transition">evendriteam@gmail.com</a>
+                        </p>
                     </div>
                 </div>
                 <div>
                     <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-widest">Quick Links</h4>
                     <ul class="space-y-3 font-medium">
                         <li><a href="index.html#home"
-                                class="text-gray-400 hover:text-secondary inline-block transition">Home</a></li>
+                                class="text-gray-500 hover:text-secondary hover:translate-x-1 inline-block transition transform">Home</a>
+                        </li>
                         <li><a href="index.html#about"
-                                class="text-gray-400 hover:text-secondary inline-block transition">About Us</a></li>
+                                class="text-gray-500 hover:text-secondary hover:translate-x-1 inline-block transition transform">About
+                                Us</a></li>
                         <li><a href="index.html#products"
-                                class="text-gray-400 hover:text-secondary inline-block transition">Shop Products</a>
+                                class="text-gray-500 hover:text-secondary hover:translate-x-1 inline-block transition transform">Shop
+                                Products</a>
                         </li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-widest">&copy; 2026</h4>
-                    <p class="text-gray-400 text-sm">Evendri Makhana Exports. All Rights Reserved.</p>
+                    <p class="text-gray-500 text-sm">Evendri Makhana Exports. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
@@ -226,15 +296,22 @@
 
         // 2. PRODUCT DATA
         const productsData = {
-            1: { title: "Classic Pink Salt", price: "249", img: "images/makhana 1.jpeg", desc: "Our hand-picked Fox Nuts are expertly roasted and seasoned with organic Himalayan Pink Salt." },
-            2: { title: "Peri Peri Fiesta", price: "279", img: "images/makhana 2.jpeg", desc: "A fiery blend of authentic African spices for those who enjoy a tangy kick." },
-            3: { title: "Cheese & Jalapeno", price: "299", img: "images/makhana 3.jpeg", desc: "Creamy velvety cheese combined with the mild heat of fresh jalapenos." }
+            1: { title: "Classic Pink Salt", price: "249", img: "images/makhana 1.jpeg", desc: "Our hand-picked Fox Nuts are expertly roasted and seasoned with organic Himalayan Pink Salt for a pure, guilt-free crunch." },
+            2: { title: "Peri Peri Fiesta", price: "279", img: "images/makhana 2.jpeg", desc: "A fiery blend of authentic African spices. This bold, tangy flavor profile provides the ultimate zesty kick to satisfy your snack cravings." },
+            3: { title: "Cheese & Jalapeno", price: "299", img: "images/makhana 3.jpeg", desc: "Experience the rich, velvety texture of creamy cheese perfectly balanced with the mild, tantalizing heat of fresh jalapenos." }
         };
 
         // 3. INITIALIZATION
         document.addEventListener('DOMContentLoaded', () => {
             AOS.init({ once: true, duration: 800 });
             CartManager.updateBadge();
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) navbar.classList.add('shadow-md', 'bg-primary/95');
+                else navbar.classList.remove('shadow-md', 'bg-primary/95');
+            });
 
             const params = new URLSearchParams(window.location.search);
             const productId = params.get('id') || 1;
@@ -247,9 +324,8 @@
                 document.getElementById('main-product-img').src = currentProduct.img;
                 document.getElementById('product-desc').innerText = currentProduct.desc;
 
-                // --- UPDATED BUY NOW LOGIC ---
-                // We point to index.html and pass the specific price in the URL
-                const buyNowLink = document.querySelector('a[href*="buyNow=true"]');
+                // Update Buy Now Link
+                const buyNowLink = document.getElementById('buy-now-link');
                 if (buyNowLink) {
                     buyNowLink.href = `index.html?buyNowPrice=${currentProduct.price}`;
                 }
@@ -265,7 +341,6 @@
                 };
             }
         });
-
     </script>
 </body>
 
