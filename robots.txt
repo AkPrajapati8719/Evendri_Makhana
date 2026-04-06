@@ -1,0 +1,11 @@
+# Robots.txt for Evendri Makhana
+# Optimized for Google, Bing, and DuckDuckGo
+
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+Disallow: /checkout/
+
+# Sitemaps tell the bot where all your pages are
+Sitemap: https://yourdomain.com/sitemap.xml
