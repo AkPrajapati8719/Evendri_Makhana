@@ -8,4 +8,4 @@ Disallow: /admin/
 Disallow: /checkout/
 
 # Sitemaps tell the bot where all your pages are
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://evendri-makhana.vercel.app/sitemap.xml
